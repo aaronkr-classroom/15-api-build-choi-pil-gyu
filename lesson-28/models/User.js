@@ -105,7 +105,8 @@ userSchema.pre("save", function (next) {
    * @TODO: user.js에서 API 토큰 생성을 위한 pre("save") 훅 생성
    */
   // 사용자의 API 토큰 생성
-
+  if (!user.apiToken) user.apiToken = randToken.generate(16);
+  
   /**
    * Listing 19.4 (p. 281)
    * user.js에 pre("save") 훅 추가
