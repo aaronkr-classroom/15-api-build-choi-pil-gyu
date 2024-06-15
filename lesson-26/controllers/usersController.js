@@ -85,15 +85,18 @@ module.exports = {
      * Listing 26.3 (p. 384)
      * @TODO: userController.js에서 쿼리 매개변수가 존재할 때 JSON으로 응답하기
      */
-
-    res.render("users/index", {
-      page: "users",
-      title: "All Users",
-      // flashMessages: {
-      //   // Listing 22.6 (p. 331) - 렌더링된 인덱스 뷰에서 플래시 메시지를 추가
-      //   success: "Loaded all users!",
-      // },
+    if (req.query.format == "json") {
+      res.json(res.locals.users);
+    } else {
+      res.render("users/index", {
+        page: "users",
+        title: "All Users",
+        // flashMessages: {
+        //   // Listing 22.6 (p. 331) - 렌더링된 인덱스 뷰에서 플래시 메시지를 추가
+        //   success: "Loaded all users!",
+        // },
     }); // 분리된 액션으로 뷰 렌더링
+   }
   },
 
   /**
